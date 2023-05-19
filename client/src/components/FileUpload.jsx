@@ -19,7 +19,7 @@ const FileUpload = () => {
     console.log("Form data", formData);
 
     axios
-      .post("/upload", formData)
+      .post("http://localhost:3000/upload", formData)
       .then((response) => {
         console.log(response);
       })

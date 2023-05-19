@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/upload", upload.single("file"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("No file was uploaded.");
+  }
+  console.log(req.file);
   res.send("File uploaded");
 });
 const port = 3000;
