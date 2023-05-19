@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  /* min-height: 100vh; */
+}
+
+.wrapper {
+  padding: 10px;
+  height: 100vh;
+  text-align: center;
+  color: black;
+}
+
+.upload {
+  border: 1px dashed blue;
+  padding: 10px;
+}
