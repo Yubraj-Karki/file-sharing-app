@@ -13,13 +13,19 @@ const FileUpload = () => {
   };
 
   const handleFileUpload = () => {
+    if (!selectedFile) {
+      console.error("No file selected.");
+      return;
+    }
+
     const formData = new FormData();
+    console.log("selectedFile in file Upload function: ", selectedFile);
     formData.append("file", selectedFile);
 
     console.log("Form data", formData);
 
     axios
-      .post("http://localhost:3000/upload", formData)
+      .post("http://localhost:3001/upload", formData)
       .then((response) => {
         console.log(response);
       })
@@ -32,12 +38,7 @@ const FileUpload = () => {
 
   return (
     <div>
-      <input
-        onChange={handleFileChange}
-        type="file"
-        id="myFile"
-        name="filename"
-      />
+      <input onChange={handleFileChange} type="file" id="myFile" name="file" />
       <button onClick={handleFileUpload}>Upload</button>
     </div>
   );

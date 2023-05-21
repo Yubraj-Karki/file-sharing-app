@@ -1,5 +1,6 @@
 import "./App.css";
 import FileUpload from "./components/FileUpload";
+import "./App.css";
 const App = () => {
   return (
     <div className="wrapper">
