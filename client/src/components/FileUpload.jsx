@@ -4,6 +4,7 @@ import { useState } from "react";
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileLink, setFileLink] = useState("");
+  const [fileUploadProgress, setFileUploadProgress] = useState();
 
   const handleFileChange = (e) => {
     try {
@@ -32,7 +33,14 @@ const FileUpload = () => {
       try {
         const response = await axios.post(
           "http://localhost:3001/upload",
-          formData
+          formData,
+          {
+            onUploadProgress: (event) => {
+              setFileUploadProgress(
+                Math.round((event.loaded * 100) / event.total)
+              );
+            },
+          }
         );
         console.log(response);
         console.log(response.data.fileLink, "download link");
@@ -62,6 +70,10 @@ const FileUpload = () => {
           Download link: <a href={fileDownloadLink}>Download File</a>
         </div>
       )}
+      File upload progress: {fileUploadProgress} ;
+      <div id="myProgress">
+        <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
+      </div>
     </form>
   );
 };
