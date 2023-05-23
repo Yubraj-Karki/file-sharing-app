@@ -14,9 +14,54 @@ body {
   height: 100vh;
   text-align: center;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.upload {
-  border: 1px dashed blue;
+.wrapper .container {
+  /* background-color: blueviolet; */
+}
+
+.uploadArea {
+  border: 1px dashed black;
   padding: 10px;
+  height: 40vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(246, 246, 246);
+  border-radius: 25px;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: blue; */
+}
+
+.browseFile {
+  display: none;
+}
+
+.browseButton {
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+
+.uploadButton {
+  width: 40%;
+  padding: 10px;
+  color: white;
+  background-color: teal;
+  border: none;
+  cursor: pointer;
+  margin-top: 50px;
 }

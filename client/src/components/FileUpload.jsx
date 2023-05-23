@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     try {
@@ -37,10 +38,26 @@ const FileUpload = () => {
   console.log("selected file: ", selectedFile);
 
   return (
-    <div>
-      <input onChange={handleFileChange} type="file" id="myFile" name="file" />
-      <button onClick={handleFileUpload}>Upload</button>
-    </div>
+    <form className="uploadForm">
+      <div className="uploadArea">
+        <label htmlFor="myFile" className="browseButton">
+          Browse file
+        </label>
+
+        <button className="uploadButton" onClick={handleFileUpload}>
+          Upload
+        </button>
+
+        <input
+          className="browseFile"
+          onChange={handleFileChange}
+          type="file"
+          id="myFile"
+          name="file"
+          ref={fileInputRef}
+        />
+      </div>
+    </form>
   );
 };
 

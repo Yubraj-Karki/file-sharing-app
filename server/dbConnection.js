@@ -1,9 +1,7 @@
-// const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
-const uri = process.env.DATABASE_URL;
-
-console.log("uri here: ", uri);
 const mongoose = require("mongoose");
+const uri = process.env.DATABASE_URL;
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(uri, {
@@ -31,7 +29,9 @@ const mongoose = require("mongoose");
 // }
 
 function connectDB() {
-  mongoose.connect(uri);
+  mongoose
+    .connect(process.env.DATABASE_URL)
+    .then(() => console.log("connected to the database"));
 }
 
 module.exports = connectDB;
