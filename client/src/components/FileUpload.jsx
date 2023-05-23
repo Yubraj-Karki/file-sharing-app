@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileLink, setFileLink] = useState("");
   const [fileUploadProgress, setFileUploadProgress] = useState();
+
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     try {
@@ -64,15 +66,11 @@ const FileUpload = () => {
   return (
     <>
       <form className="uploadForm">
+        <h1>Upload</h1>
         <div className="uploadArea">
-          <label htmlFor="myFile" className="browseButton">
-            Browse file
+          <label htmlFor="myFile">
+            <button className="browseButton">Browse file</button>
           </label>
-
-          <button className="uploadButton" onClick={handleFileUpload}>
-            Upload
-          </button>
-
           <input
             className="browseFile"
             onChange={handleFileChange}
@@ -84,22 +82,19 @@ const FileUpload = () => {
         </div>
       </form>
       <form>
-        <input
-          onChange={handleFileChange}
-          type="file"
-          id="myFile"
-          name="file"
-        />
-        <button onClick={handleFileUpload}>Upload</button>
         {fileLink && (
           <div>
             Download link: <a href={fileDownloadLink}>Download File</a>
           </div>
         )}
-        File upload progress: {fileUploadProgress} ;
+        {/* File upload progress: {fileUploadProgress} ; */}
         <div id="myProgress">
           <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
         </div>
+
+        <button className="uploadButton" onClick={handleFileUpload}>
+          Upload Files
+        </button>
       </form>
     </>
   );
