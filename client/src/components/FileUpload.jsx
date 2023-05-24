@@ -8,6 +8,12 @@ const FileUpload = () => {
 
   const fileInputRef = useRef(null);
 
+  const resetState = () => {
+    setSelectedFile(null);
+    setFileLink("");
+    setFileUploadProgress();
+  };
+
   const handleFileChange = (e) => {
     try {
       setSelectedFile(e.target.files[0]);
@@ -79,10 +85,10 @@ const FileUpload = () => {
           <p className="selectedFile">
             {selectedFile
               ? "Selected file: " + selectedFile.name
-              : "Browse file to upload"}
+              : "Browse file and upload"}
           </p>
 
-          <label htmlFor="myFile" className="browseButton">
+          <label onClick={resetState} htmlFor="myFile" className="browseButton">
             Browse file
           </label>
           <input
@@ -111,7 +117,7 @@ const FileUpload = () => {
 
         {fileLink && (
           <div className="downloadLinkArea">
-            <p>Link for the file expires in 10 hour</p>
+            <p>Copy the link for the file below. Link expires in 10 hour.</p>
             <div className="downloadLink">
               <a href={fileDownloadLink}>{fileDownloadLink}</a>
             </div>
