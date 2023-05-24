@@ -56,7 +56,10 @@ const FileUpload = () => {
     }
   };
 
-  console.log("selected file: ", selectedFile);
+  console.log(
+    "selected file here: ",
+    selectedFile ? selectedFile.name : "empty"
+  );
 
   const fileDownloadLink = fileLink
     ? `http://localhost:3001/download/${fileLink}`
@@ -66,10 +69,21 @@ const FileUpload = () => {
   return (
     <>
       <form className="uploadForm">
-        <h1>Upload</h1>
+        <header>
+          <h1>Upload</h1>
+          <p>
+            Upload, Share, and Download! Seamlessly share files with others.
+          </p>
+        </header>
         <div className="uploadArea">
-          <label htmlFor="myFile">
-            <button className="browseButton">Browse file</button>
+          <p className="selectedFile">
+            {selectedFile
+              ? "Selected file: " + selectedFile.name
+              : "Browse file to upload"}
+          </p>
+
+          <label htmlFor="myFile" className="browseButton">
+            Browse file
           </label>
           <input
             className="browseFile"
@@ -81,21 +95,37 @@ const FileUpload = () => {
           />
         </div>
       </form>
-      <form>
-        {fileLink && (
-          <div>
-            Download link: <a href={fileDownloadLink}>Download File</a>
+      <div>
+        {fileUploadProgress && (
+          <div className="fileUploadProgress">
+            {fileUploadProgress < 100 ? (
+              <span>Uploading..{fileUploadProgress}% </span>
+            ) : (
+              <span>Upload completed</span>
+            )}
+            <div id="myProgress">
+              <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
+            </div>
           </div>
         )}
-        {/* File upload progress: {fileUploadProgress} ; */}
-        <div id="myProgress">
-          <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
-        </div>
 
-        <button className="uploadButton" onClick={handleFileUpload}>
-          Upload Files
+        {fileLink && (
+          <div className="downloadLinkArea">
+            <p>Link for the file expires in 10 hour</p>
+            <div className="downloadLink">
+              <a href={fileDownloadLink}>{fileDownloadLink}</a>
+            </div>
+          </div>
+        )}
+
+        <button
+          disabled={!selectedFile}
+          className="uploadButton"
+          onClick={handleFileUpload}
+        >
+          Upload File
         </button>
-      </form>
+      </div>
     </>
   );
 };

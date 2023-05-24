@@ -30,7 +30,7 @@ body {
 .uploadArea {
   border: 1px dashed #dbdbdb;
   padding: 10px;
-  min-height: 30vh;
+  min-height: 40vh;
   width: 30vw;
   display: flex;
   flex-direction: column;
@@ -38,6 +38,7 @@ body {
   justify-content: center;
   background-color: rgb(246, 246, 246);
   border-radius: 25px;
+  margin-bottom: 30px;
 }
 
 .uploadForm {
@@ -64,18 +65,6 @@ body {
   border-radius: 5px;
 }
 
-.uploadButton {
-  width: 100%;
-  padding: 15px;
-  color: white;
-  background-color: teal;
-  border: none;
-  cursor: pointer;
-  margin-top: 50px;
-  background: #483ea8;
-  border-radius: 5px;
-}
-
 #myProgress {
   width: 100%;
   background-color: lightgrey;
@@ -83,12 +72,77 @@ body {
 }
 
 #myBar {
-  width: 10%;
-  height: 6px;
-  background-color: #7594ec;
+  width: 0%;
+  height: 3px;
+  background-color: #3c5496;
 }
 
-form > h1 {
-  margin-bottom: 20px;
-  font-size: 22px;
+header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header h1 {
+  margin-bottom: 9px;
+  font-size: 24px;
+  color: #373636;
+}
+
+header p {
+  margin-bottom: 13px;
+  font-size: 13px;
+  color: #6e6e6e;
+  width: 60%;
+  text-align: center;
+}
+
+.selectedFile {
+  color: #7594ec;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.downloadLinkArea {
+  margin-top: 30px;
+}
+
+.downloadLinkArea p {
+  color: #2c2c2c;
+  font-size: 13px;
+}
+.downloadLink {
+  /* border: 1px solid blue; */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 1px;
+  background-color: #f8f8f8;
+}
+
+.downloadLink a {
+  color: rgb(136, 133, 133);
+  font-size: 13px;
+}
+
+.uploadButton {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background-color: teal;
+  border: none;
+  cursor: pointer;
+  margin-top: 30px;
+  background: #483ea8;
+  border-radius: 5px;
+}
+
+.uploadButton:disabled {
+  opacity: 0.5;
+}
+
+.fileUploadProgress span {
+  text-align: left;
+  color: #483ea8;
+  font-size: 13px;
 }
