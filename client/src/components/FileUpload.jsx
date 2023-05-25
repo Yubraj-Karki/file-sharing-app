@@ -1,17 +1,19 @@
 import axios from "axios";
 import { useRef, useState } from "react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileLink, setFileLink] = useState("");
-  const [fileUploadProgress, setFileUploadProgress] = useState();
+  const [fileUploadProgress, setFileUploadProgress] = useState(0);
 
   const fileInputRef = useRef(null);
 
   const resetState = () => {
     setSelectedFile(null);
     setFileLink("");
-    setFileUploadProgress();
+    setFileUploadProgress(0);
   };
 
   const handleFileChange = (e) => {
@@ -90,15 +92,20 @@ const FileUpload = () => {
           </p>
         </header>
         <div className="uploadArea">
+          <CircularProgressbar
+            value={fileUploadProgress}
+            text={`${fileUploadProgress}%`}
+          />
+
+          <label onClick={resetState} htmlFor="myFile" className="browseButton">
+            <u>Click to browse file</u>
+          </label>
+
           <p className="selectedFile">
             {selectedFile
               ? "Selected file: " + selectedFile.name
               : "Browse file and upload"}
           </p>
-
-          <label onClick={resetState} htmlFor="myFile" className="browseButton">
-            Browse file
-          </label>
           <input
             className="browseFile"
             onChange={handleFileChange}
@@ -110,30 +117,21 @@ const FileUpload = () => {
         </div>
       </form>
       <div>
-        {fileUploadProgress && (
-          <div className="fileUploadProgress">
-            {fileUploadProgress < 100 ? (
-              <span>Uploading..{fileUploadProgress}% </span>
-            ) : (
-              <span>Upload completed {fileUploadProgress}%</span>
-            )}
-            <div id="myProgress">
-              <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
-            </div>
-          </div>
-        )}
-
-        {fileLink && (
-          <div className="downloadLinkArea">
+        <div className="downloadLinkArea">
+          {fileLink ? (
             <p>Copy the link for the file below. Link expires in 10 hour.</p>
-            <div className="downloadLink">
-              <a href={fileDownloadLink}>{fileDownloadLink}</a>
+          ) : (
+            <p>Download link will appear below once you upload the file</p>
+          )}
+          <div className="downloadLink">
+            <a href={fileDownloadLink}>{fileDownloadLink}</a>
+            {fileLink && (
               <button className="copyBtn" onClick={CopyToClipboard}>
                 Copy
               </button>
-            </div>
+            )}
           </div>
-        )}
+        </div>
 
         <button
           disabled={!selectedFile || fileUploadProgress == 100}

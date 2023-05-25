@@ -28,15 +28,16 @@ body {
 }
 
 .uploadArea {
-  border: 1px dashed #747474;
+  border: 1px dashed #3c5496;
   padding: 10px;
   min-height: 40vh;
-  width: 30vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(246, 246, 246);
+  /* background-color: rgb(246, 246, 246); */
+  background-color: white;
   border-radius: 25px;
   margin-bottom: 30px;
 }
@@ -57,24 +58,29 @@ body {
   color: white;
   cursor: pointer;
   font-weight: light;
-  font-size: 12px;
-  text-transform: capitalize;
+  font-size: 16px;
+  /* text-transform: capitalize; */
   border: none;
-  background: #483ea8;
+  /* background: #483ea8; */
+  background: transparent;
   padding: 10px;
   border-radius: 5px;
+  margin: 10px 0px;
+  color: #483ea8;
 }
 
-#myProgress {
+/* #myProgress {
   width: 100%;
   background-color: lightgrey;
   margin-top: 10px;
-}
+} */
 
 #myBar {
-  width: 0%;
-  height: 3px;
-  background-color: #3c5496;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid #3c5496;
 }
 
 header {
@@ -83,6 +89,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 19px;
 }
 header h1 {
   margin-bottom: 9px;
@@ -91,7 +98,6 @@ header h1 {
 }
 
 header p {
-  margin-bottom: 13px;
   font-size: 13px;
   color: #6e6e6e;
   width: 60%;
@@ -100,12 +106,14 @@ header p {
 
 .selectedFile {
   color: #7594ec;
-  margin-bottom: 10px;
   font-size: 13px;
 }
 
 .downloadLinkArea {
-  margin-top: 30px;
+  margin-top: 5px;
+  border: 1px solid rgb(64, 22, 180);
+  border-radius: 7px;
+  padding: 17px 10px;
 }
 
 .downloadLinkArea p {
@@ -114,14 +122,14 @@ header p {
 }
 .downloadLink {
   /* border: 1px solid blue; */
-  padding: 5px;
+  padding: 8px;
   margin-top: 10px;
   border-radius: 1px;
   background-color: #e2e2e2;
-  /* display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; */
+  align-items: center;
 }
 
 .downloadLink a {
@@ -161,3 +169,37 @@ header p {
   font-size: 11px;
   border-radius: 3px;
 }
+
+.copyBtn:disabled {
+  opacity: 0.5;
+}
+
+.CircularProgressbar {
+  height: 100px;
+  width: 100px;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #3c5496 !important;
+  stroke-width: 3px !important;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #161718 !important;
+  font-size: 15px !important;
+}
+
+.CircularProgressbar-trail {
+  stroke: gray;
+  stroke-width: 3px !important;
+}
+/* .CircularProgressbar-path {
+  stroke: red;
+}
+
+.CircularProgressbar-text {
+  fill: yellow;
+}
+.CircularProgressbar-background {
+  fill: green;
+} */
