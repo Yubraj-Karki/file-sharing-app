@@ -71,6 +71,14 @@ const FileUpload = () => {
     ? `http://localhost:3001/download/${fileLink}`
     : "";
 
+  const CopyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(fileDownloadLink);
+    } catch (error) {
+      console.error("Failed to copy text: ", error);
+    }
+  };
+
   console.log("file download link: ", fileDownloadLink);
   return (
     <>
@@ -107,7 +115,7 @@ const FileUpload = () => {
             {fileUploadProgress < 100 ? (
               <span>Uploading..{fileUploadProgress}% </span>
             ) : (
-              <span>Upload completed</span>
+              <span>Upload completed {fileUploadProgress}%</span>
             )}
             <div id="myProgress">
               <div style={{ width: `${fileUploadProgress}%` }} id="myBar"></div>
@@ -120,12 +128,15 @@ const FileUpload = () => {
             <p>Copy the link for the file below. Link expires in 10 hour.</p>
             <div className="downloadLink">
               <a href={fileDownloadLink}>{fileDownloadLink}</a>
+              <button className="copyBtn" onClick={CopyToClipboard}>
+                Copy
+              </button>
             </div>
           </div>
         )}
 
         <button
-          disabled={!selectedFile}
+          disabled={!selectedFile || fileUploadProgress == 100}
           className="uploadButton"
           onClick={handleFileUpload}
         >
