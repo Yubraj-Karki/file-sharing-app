@@ -5,6 +5,8 @@ const multer = require("multer");
 const mongoose = require("mongoose");
 const File = require("./models/File");
 const path = require("path");
+const nodemailer = require("nodemailer");
+
 const upload = multer({ dest: "./uploads" });
 
 // Enable CORS
@@ -15,6 +17,14 @@ app.use(
     origin: "http://localhost:5173",
   })
 );
+
+const transporter = nodemailer.createTransport({
+  service: "email",
+  auth: {
+    user: "Your_Email",
+    pass: "Your_Password",
+  },
+});
 
 app.get("/", (req, res) => {
   res.send("Hello from the swiftDrop!");
@@ -70,6 +80,36 @@ app.get("/download/:identifier", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+app.post("/send-email", async (req, res) => {
+  // console.log("email request: ", req);
+  // const { sender, password, receiver, fileDownloadLink } = req.body;
+
+  console.log(req);
+
+  // const transporter = nodemailer.createTransport({
+  //   service: "email",
+  //   auth: {
+  //     user: sender,
+  //     pass: password,
+  //   },
+  // });
+
+  // try {
+  //   const message = {
+  //     from: sender,
+  //     to: receiver,
+  //     subject: "Download file",
+  //     text: `Download link: ${fileDownloadLink}`,
+  //   };
+
+  //   // Send the email using Nodemailer
+  //   await transporter.sendMail(message);
+  //   res.sendStatus(200);
+  // } catch (error) {
+  //   console.error("Error occurred while sending email:", error);
+  // }
 });
 
 const port = 3001;

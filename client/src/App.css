@@ -136,7 +136,7 @@ header p {
   padding: 8px;
   margin-top: 10px;
   border-radius: 1px;
-  background-color: #e2e2e2;
+  background-color: #f5f5fc;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -253,5 +253,5 @@ header p {
   background-color: white;
   padding: 30px;
   transition: 0.5s ease;
-  height: 67vh;
+  height: 73vh;
 }

@@ -29,8 +29,6 @@ const FileUpload = () => {
   const handleFileUpload = async (e) => {
     e.preventDefault(); // Prevent form submission behavior
 
-    console.log("clicked");
-
     if (!selectedFile) {
       console.error("No file selected.");
       return;
@@ -66,11 +64,6 @@ const FileUpload = () => {
     }
   };
 
-  console.log(
-    "selected file here: ",
-    selectedFile ? selectedFile.name : "empty"
-  );
-
   const fileDownloadLink = fileLink
     ? `http://localhost:3001/download/${fileLink}`
     : "";
@@ -82,8 +75,6 @@ const FileUpload = () => {
       console.error("Failed to copy text: ", error);
     }
   };
-
-  console.log("file download link: ", fileDownloadLink);
 
   // share Area slide style to dynamically hide or show share area component
   const shareAreaSlideStyle = {
@@ -142,7 +133,7 @@ const FileUpload = () => {
         </header>
         <div className="downloadLinkArea">
           {fileLink ? (
-            <p>Copy the link for the file below. Link expires in 10 hour.</p>
+            <p>Copy the download link for the file. Link expires in 10 hour.</p>
           ) : (
             <p>Download link processing...</p>
           )}
@@ -156,7 +147,7 @@ const FileUpload = () => {
           </div>
         </div>
 
-        <Email />
+        <Email fileDownloadLink={fileDownloadLink} />
       </div>
     </>
   );
