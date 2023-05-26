@@ -4,10 +4,7 @@ const App = () => {
   return (
     <div className="wrapper">
       <div className="container">
-        <div className="upload">
-          <FileUpload />
-        </div>
-        <div className="files">{/* <h1>Files</h1> */}</div>
+        <FileUpload />
       </div>
     </div>
   );

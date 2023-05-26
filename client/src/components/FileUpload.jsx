@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+import Email from "./Email";
+
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileLink, setFileLink] = useState("");
@@ -82,6 +84,12 @@ const FileUpload = () => {
   };
 
   console.log("file download link: ", fileDownloadLink);
+
+  // share Area slide style to dynamically hide or show share area component
+  const shareAreaSlideStyle = {
+    transform: "translateX(10%)",
+  };
+
   return (
     <>
       <form className="uploadForm">
@@ -115,23 +123,6 @@ const FileUpload = () => {
             ref={fileInputRef}
           />
         </div>
-      </form>
-      <div>
-        <div className="downloadLinkArea">
-          {fileLink ? (
-            <p>Copy the link for the file below. Link expires in 10 hour.</p>
-          ) : (
-            <p>Download link will appear below once you upload the file</p>
-          )}
-          <div className="downloadLink">
-            <a href={fileDownloadLink}>{fileDownloadLink}</a>
-            {fileLink && (
-              <button className="copyBtn" onClick={CopyToClipboard}>
-                Copy
-              </button>
-            )}
-          </div>
-        </div>
 
         <button
           disabled={!selectedFile || fileUploadProgress == 100}
@@ -140,6 +131,32 @@ const FileUpload = () => {
         >
           Upload File
         </button>
+      </form>
+      <div
+        style={fileUploadProgress == 100 ? shareAreaSlideStyle : null}
+        className="shareArea"
+      >
+        <header>
+          <h1>Share</h1>
+          <p>Share the download link with recipient or simply email it.</p>
+        </header>
+        <div className="downloadLinkArea">
+          {fileLink ? (
+            <p>Copy the link for the file below. Link expires in 10 hour.</p>
+          ) : (
+            <p>Download link processing...</p>
+          )}
+          <div className="downloadLink">
+            <p href={fileDownloadLink}>{fileDownloadLink}</p>
+            {fileLink && (
+              <button className="copyBtn" onClick={CopyToClipboard}>
+                Copy
+              </button>
+            )}
+          </div>
+        </div>
+
+        <Email />
       </div>
     </>
   );
